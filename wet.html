@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>万广通 · 在线服务平台</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;font-family:-apple-system, BlinkMacSystemFont, sans-serif;}
+        :root {--primary:#165DFF;--success:#00B42A;--warning:#FF7D00;--danger:#F53F3F;--gray:#86909C;--bg:#f5f7fa;--card:#ffffff;}
+        body {background:var(--bg);padding:15px;padding-bottom:80px;}
+        .header {background:linear-gradient(135deg,var(--primary),#4080FF);color:white;padding:20px;border-radius:16px;margin-bottom:20px;text-align:center;box-shadow:0 4px 12px rgba(22,93,255,0.15);}
+        .header h1 {font-size:20px;margin-bottom:5px;}
+        .header p {font-size:14px;opacity:0.9;}
+        .card {background:var(--card);border-radius:16px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+        .card h3 {font-size:16px;margin-bottom:12px;color:#1D2129;display:flex;align-items:center;}
+        .card h3 span {margin-left:8px;font-size:12px;background:var(--success);color:white;padding:2px 8px;border-radius:10px;}
+        .item {padding:12px 0;border-bottom:1px solid #f2f3f5;display:flex;justify-content:space-between;align-items:center;}
+        .item:last-child {border-bottom:none;}
+        .item-left {flex:1;}
+        .item-title {font-weight:500;margin-bottom:4px;}
+        .item-desc {font-size:13px;color:var(--gray);}
+        .price {color:var(--danger);font-weight:bold;font-size:16px;}
+        .btn {display:block;width:100%;background:var(--primary);color:white;border:none;padding:12px;border-radius:10px;font-size:15px;font-weight:500;margin:10px 0;}
+        .btn:active {opacity:0.8;}
+        .btn-success {background:var(--success);}
+        .btn-warning {background:var(--warning);}
+        .input {width:100%;padding:10px 12px;border:1px solid #E5E6EB;border-radius:8px;margin:8px 0;font-size:14px;}
+        .tab {display:flex;background:#f2f3f5;border-radius:10px;margin-bottom:15px;}
+        .tab-item {flex:1;padding:10px;text-align:center;border-radius:8px;font-size:14px;}
+        .tab-item.active {background:white;color:var(--primary);font-weight:500;box-shadow:0 2px 4px rgba(0,0,0,0.05);}
+        .hidden {display:none !important;}
+        .badge {background:var(--danger);color:white;font-size:11px;padding:2px 6px;border-radius:10px;position:relative;top:-8px;left:4px;}
+        .footer {position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #f2f3f5;display:flex;padding:8px 0;z-index:99;}
+        .footer-item {flex:1;text-align:center;padding:8px 0;font-size:12px;color:var(--gray);}
+        .footer-item.active {color:var(--primary);font-weight:500;}
+        .copy-btn {background:#f2f3f5;color:#333;border:none;padding:4px 8px;border-radius:4px;font-size:12px;}
+        .tip {font-size:12px;color:var(--gray);text-align:center;margin-top:10px;}
+        .online-tag {position:absolute;top:10px;right:10px;background:var(--success);color:white;font-size:11px;padding:2px 6px;border-radius:10px;}
+    </style>
+</head>
+<body>
+    <div class="online-tag">✅ 在线版 · 实时同步</div>
+    <div id="page-home">
+        <div class="header">
+            <h1>万广通 · 综合服务平台</h1>
+            <p>🌐 在线访问 · 数据同步 · 全球可用</p>
+        </div>
+        <div class="card">
+            <h3>🔥 热门套餐 <span>在线可购</span></h3>
+            <div class="item"><div class="item-left"><div class="item-title">基础版套餐</div><div class="item-desc">全功能、稳定通道、售后</div></div><div class="price">¥99</div></div>
+            <div class="item"><div class="item-left"><div class="item-title">高级版套餐</div><div class="item-desc">专属通道、极速响应</div></div><div class="price">¥199</div></div>
+            <div class="item"><div class="item-left"><div class="item-title">旗舰版套餐</div><div class="item-desc">全功能+专属客服+自动推广</div></div><div class="price">¥299</div></div>
+            <button class="btn" onclick="alert('下单成功！自动处理中~')">立即办理</button>
+        </div>
+        <div class="card">
+            <h3>📢 自动推广 <span>在线分发</span></h3>
+            <p style="font-size:14px;">专属链接，全球可访问，自动统计收益！</p>
+            <div style="background:#f5f7fa;padding:10px;border-radius:8px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;">
+                <span id="link">https://wgt888.github.io/wanguang</span>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('link').innerText);alert('已复制！')">复制</button>
+            </div>
+        </div>
+        <div class="card">
+            <h3>🔐 后台管理</h3>
+            <p>账号：wanguang_admin | 密码：Wgt@888888</p>
+            <button class="btn btn-success" onclick="alert('✅ 登录成功！在线管理已开启，改完全网同步！')">进入后台</button>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-item active" onclick="alert('首页')">🏠 首页</div>
+        <div class="footer-item" onclick="alert('推广')">📢 推广</div>
+        <div class="footer-item" onclick="alert('订单')">📦 订单</div>
+        <div class="footer-item" onclick="alert('后台')">🔐 后台</div>
+    </div>
+</body>
+</html>
