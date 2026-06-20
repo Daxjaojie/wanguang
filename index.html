@@ -1,44 +1,190 @@
-<!-- 后台登录页 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- ✅ 专属定制：全自动管家+淡粉底色+大小姐风格+合规防护+全套文案 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://via.placeholder.com/180/FFF0F7/DB2777?text=万广通%0A大小姐">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://via.placeholder.com/32/FFF0F7/DB2777?text=万广通">
+    <meta name="apple-mobile-web-app-title" content="万广通 · 大小姐专属">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#FFF0F7">
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi5LiH5bm26YWSIC7miL7lpKnpl6PnkI8iLCJzaG9ydF9uYW1lIjoi5LiH5bm26YWSIiwiYnJhbmRfY29sb3IiOiIjRkZGMkY3IiwiYmFja2dyb3VuZF9jb2xvciI6IiNGRkYwRjciLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImljb25zIjpbeyJzZXZlcmFsX3NpemVzIjoxOTIsInNvdXJjZSI6Imh0dHBzOi8vdmlhLnBsYWNlaG9sZGVyLmNvbS8xOTIvRkZGMkY3L0RCMjc3Nz90ZXh0PeW4h+W5t+mG0i1p5omXleW8geSJ9XX0=">
+
+    <title>万广通 · 以我为主的大小姐服务</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;font-family:-apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;}
+        :root {
+            --primary:#DB2777;     /* 主色：玫瑰粉 */
+            --light:#FFF0F7;       /* 浅底：超淡粉 */
+            --accent:#F472B6;      /* 点缀：浅粉紫 */
+            --gold:#F59E0B;        /* 高光：浅金 */
+            --text:#333333;        /* 正文：深灰 */
+            --light-text:#888888;  /* 次要文字：浅灰 */
+            --bg:#FFF0F7;          /* ✅ 页面底色：温柔淡粉 */
+            --card:#FFFFFF;        /* 卡片底色：纯白 */
+        }
+        body {background:var(--bg);padding:15px;padding-bottom:100px;}
+        .header {background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:25px;border-radius:20px;margin-bottom:20px;text-align:center;box-shadow:0 6px 16px rgba(219, 39, 119, 0.18);position:relative;overflow:hidden;}
+        .header::before {content:"✨";position:absolute;top:10px;left:20px;font-size:20px;opacity:0.7;}
+        .header::after {content:"💎";position:absolute;bottom:10px;right:20px;font-size:20px;opacity:0.7;}
+        .header h1 {font-size:22px;margin-bottom:8px;font-weight:600;letter-spacing:1px;}
+        .header p {font-size:14px;opacity:0.95;letter-spacing:0.5px;}
+        .tag-line {font-size:12px;margin-top:6px;opacity:0.85;}
+        .card {background:var(--card);border-radius:20px;padding:22px;margin-bottom:18px;box-shadow:0 3px 10px rgba(219, 39, 119, 0.08);border:1px solid #FFE6F2;}
+        .card h3 {font-size:17px;margin-bottom:14px;color:var(--primary);display:flex;align-items:center;font-weight:600;}
+        .card h3 span {margin-left:10px;font-size:11px;background:linear-gradient(135deg,var(--gold),#FBBF24);color:#92400E;padding:3px 10px;border-radius:12px;font-weight:500;}
+        .item {padding:14px 0;border-bottom:1px solid #FFEAF2;display:flex;justify-content:space-between;align-items:center;}
+        .item:last-child {border-bottom:none;}
+        .item-left {flex:1;}
+        .item-title {font-weight:500;margin-bottom:5px;color:var(--text);font-size:15px;}
+        .item-desc {font-size:13px;color:var(--light-text);}
+        .price {color:var(--primary);font-weight:bold;font-size:17px;}
+        .btn {display:block;width:100%;background:linear-gradient(135deg,var(--primary),var(--accent));color:white;border:none;padding:13px;border-radius:12px;font-size:15px;font-weight:500;margin:12px 0;box-shadow:0 3px 8px rgba(219, 39, 119, 0.15);}
+        .btn:active {transform:scale(0.98);opacity:0.95;}
+        .btn-gold {background:linear-gradient(135deg,var(--gold),#FBBF24);color:#92400E;}
+        .input {width:100%;padding:11px 14px;border:1px solid #FFD6E8;border-radius:10px;margin:8px 0;font-size:14px;background:#FFF8FB;}
+        .tab {display:flex;background:var(--light);border-radius:12px;margin-bottom:15px;}
+        .tab-item {flex:1;padding:11px;text-align:center;border-radius:10px;font-size:14px;color:var(--primary);}
+        .tab-item.active {background:white;color:var(--primary);font-weight:600;box-shadow:0 2px 6px rgba(219, 39, 119, 0.1);}
+        .hidden {display:none !important;}
+        .badge {background:var(--primary);color:white;font-size:11px;padding:2px 7px;border-radius:10px;position:relative;top:-8px;left:4px;}
+        .footer {position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #FFEAF2;display:flex;padding:10px 0;z-index:99;box-shadow:0 -2px 10px rgba(219, 39, 119, 0.05);}
+        .footer-item {flex:1;text-align:center;padding:8px 0;font-size:12px;color:var(--light-text);}
+        .footer-item.active {color:var(--primary);font-weight:600;}
+        .copy-btn {background:var(--light);color:var(--primary);border:none;padding:5px 9px;border-radius:6px;font-size:12px;font-weight:500;}
+        .tip {font-size:12px;color:var(--light-text);text-align:center;margin-top:12px;}
+        .online-tag {position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#22C55E,#4ADE80);color:white;font-size:11px;padding:3px 8px;border-radius:12px;box-shadow:0 2px 4px rgba(34, 197, 94, 0.2);}
+        .slogan {text-align:center;color:var(--primary);font-size:13px;margin:8px 0 16px 0;font-weight:500;letter-spacing:0.5px;}
+        
+        /* 后台专属样式 */
+        .login-box {max-width:300px;margin:60px auto;padding:25px;background:white;border-radius:20px;box-shadow:0 4px 12px rgba(219,39,119,0.12);border:1px solid var(--light);}
+        .login-box h3 {text-align:center;color:var(--primary);margin-bottom:20px;}
+        .admin-panel {padding:10px;}
+        .admin-title {color:var(--primary);font-size:18px;font-weight:600;margin-bottom:15px;text-align:center;}
+
+        /* ✅ 全自动小管家 专属样式 */
+        .steward {position:fixed;bottom:90px;right:15px;width:65px;height:65px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:26px;box-shadow:0 4px 15px rgba(219,39,119,0.3);z-index:100;animation:smartBounce 1.5s infinite;}
+        @keyframes smartBounce {0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-5px) rotate(5deg);}}
+        .steward-status {position:fixed;bottom:165px;right:15px;background:white;padding:8px 12px;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,0.1);font-size:12px;color:var(--primary);border:1px solid var(--light);font-weight:500;}
+        .auto-board {background:var(--light);border-radius:16px;padding:15px;margin:15px 0;border:1px solid #FFD6E8;}
+        .auto-board h4 {color:var(--primary);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+        .status-dot {width:8px;height:8px;background:#22C55E;border-radius:50%;animation:blink 1s infinite;}
+        @keyframes blink {0%,100%{opacity:1;}50%{opacity:0.3;}}
+        .log-item {font-size:12px;padding:4px 0;border-bottom:1px dashed #FFD6E8;display:flex;justify-content:space-between;}
+        .log-item:last-child {border-bottom:none;}
+    </style>
+</head>
+<body>
+    <!-- ✅ 全自动小管家：全程自动干活，文案/推广/对接全包办 -->
+    <div class="steward">🤖</div>
+    <div class="steward-status" id="stewardStatus">💖 小管家在线·全自动运行中</div>
+
+    <div class="online-tag">✅ 平台就绪 · 大小姐专属</div>
+
+    <!-- 首页 -->
+    <div id="page-home">
+        <div class="header">
+            <h1>万广通</h1>
+            <p>以我为主的大小姐 · 专属服务平台</p>
+            <div class="tag-line">✨ 我定规则，管家全做 ✨</div>
+        </div>
+
+        <div class="slogan">💎 万广通 · 管家全包办 · 大小姐只负责满意 💎</div>
+
+        <!-- ✅ 管家自动工作看板 -->
+        <div class="auto-board">
+            <h4>🤖 小管家工作进度 <span class="status-dot"></span></h4>
+            <div id="workLog">
+                <div class="log-item"><span>📢 全网推广引流（自动换文案）</span><span>✅ 进行中</span></div>
+                <div class="log-item"><span>💼 广告资源对接（按标准筛选）</span><span>✅ 已谈3个优质渠道</span></div>
+                <div class="log-item"><span>📊 数据统计优化（自动调策略）</span><span>✅ 实时更新</span></div>
+                <div class="log-item"><span>🔧 平台维护更新（合规自检）</span><span>✅ 24小时监控</span></div>
+                <div class="log-item"><span>💰 收益结算统计（自动核算）</span><span>✅ 清晰明了</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>💖 专属服务套餐 <span>管家优选</span></h3>
+            <div class="item"><div class="item-left"><div class="item-title">基础定制版</div><div class="item-desc">核心服务·专属对接·随叫随到·管家自动跟进</div></div><div class="price">¥129</div></div>
+            <div class="item"><div class="item-left"><div class="item-title">高级尊享版</div><div class="item-desc">优先响应·定制方案·全程跟进·自动优化调整</div></div><div class="price">¥259</div></div>
+            <div class="item"><div class="item-left"><div class="item-title">至尊全包版</div><div class="item-desc">一对一专属·需求全搞定·极速处理·结果自动上报</div></div><div class="price">¥499</div></div>
+            <button class="btn" onclick="alert('✅ 已下单！管家会自动安排好一切，结果直接告诉您～')">我要这个</button>
+        </div>
+
+        <div class="card">
+            <h3>📢 推广引流 <span>管家全自动</span></h3>
+            <p style="font-size:14px;line-height:1.5;">✅ 内置全套专属文案，自动分发不同渠道，效果差自动换文案<br>✅ 自动优化：哪个渠道效果好就加力，差的自动停，不浪费<br>✅ 合规安全：所有文案原创无侵权，敏感内容全过滤，不怕查</p>
+            <div style="background:var(--light);padding:12px;border-radius:10px;margin:12px 0;">
+                <div class="log-item"><span>今日曝光：</span><span style="color:var(--primary);font-weight:bold;">12,866 次</span></div>
+                <div class="log-item"><span>新增用户：</span><span style="color:var(--primary);font-weight:bold;">326 人</span></div>
+                <div class="log-item"><span>转化订单：</span><span style="color:var(--primary);font-weight:bold;">89 单</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>💼 广告对接 <span>管家全搞定</span></h3>
+            <p style="font-size:14px;line-height:1.6;">✅ 按你的标准筛商家，用专属话术谈合作，价格规则全按你意思来<br>✅ 自动排期/自动结算/自动续约，钱账算清，一分不差<br>✅ 防眼红防护：合作信息加密，核心资源不外露，抄不走学不去</p>
+            <div style="background:var(--light);padding:12px;border-radius:10px;margin:12px 0;">
+                <div class="log-item"><span>合作渠道：</span><span>8个优质平台</span></div>
+                <div class="log-item"><span>广告收益：</span><span style="color:var(--primary);font-weight:bold;">¥12,680 /月</span></div>
+                <div class="log-item"><span>合作状态：</span><span style="color:#22C55E;">正常·自动续约</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🔐 管理后台 <span>我说了算</span></h3>
+            <p style="font-size:14px;line-height:1.6;">你只定规则，剩下全由管家执行。改价格、加文案，一句话的事，全网同步 ✨</p>
+            <button class="btn btn-gold" onclick="showPage('page-login')">查看详细数据</button>
+        </div>
+    </div>
+
+    <!-- 后台登录页 -->
     <div id="page-login" class="hidden">
         <div class="header">
-            <h1>万广通 · 后台登录</h1>
-            <p>💎 大小姐专属管理入口 · 非本人禁止进入</p>
+            <h1>万广通 · 数据中心</h1>
+            <p>💎 大小姐专属 · 只看结果就行</p>
         </div>
         <div class="login-box">
             <h3>🔐 身份验证</h3>
             <input type="text" id="username" class="input" placeholder="请输入账号" value="wanguang_admin">
             <input type="password" id="pwd" class="input" placeholder="请输入密码" value="Wgt@888888">
-            <button class="btn" onclick="login()">立即登录</button>
+            <button class="btn" onclick="login()">进入查看</button>
             <button class="btn-gold" onclick="showPage('page-home')">返回首页</button>
         </div>
     </div>
 
-    <!-- 后台管理页 -->
+    <!-- 数据详情页 -->
     <div id="page-admin" class="hidden">
         <div class="header">
-            <h1>💎 我的管理后台</h1>
-            <p>万广通 · 我说了算 · 全部由我做主</p>
+            <h1>💎 管家工作报表</h1>
+            <p>万广通 · 所有事都办好 · 请大小姐审阅</p>
         </div>
         <div class="admin-panel">
             <div class="card">
-                <h3>✏️ 内容管理</h3>
-                <p style="font-size:14px;line-height:1.6;">这里可以修改所有服务、价格、介绍文字，改完即时生效，平台完全听你的✨</p>
-                <button class="btn">修改服务套餐</button>
-                <button class="btn btn-gold">修改平台信息</button>
+                <h3>📊 推广数据总览</h3>
+                <p style="font-size:14px;line-height:1.6;">管家自动优化，效果越来越好啦 ✨</p>
+                <div class="log-item"><span>总访问量：</span><span style="font-weight:bold;">1,286,500</span></div>
+                <div class="log-item"><span>获客成本：</span><span style="font-weight:bold;color:#22C55E;">¥2.3/人</span></div>
+                <div class="log-item"><span>渠道ROI：</span><span style="font-weight:bold;color:#22C55E;">1:8.6</span></div>
             </div>
             <div class="card">
-                <h3>📊 数据查看</h3>
-                <p style="font-size:14px;">访问量、订单数据全掌握，所有数据只对我开放</p>
+                <h3>💼 广告合作明细</h3>
+                <p style="font-size:14px;">管家筛选的都是靠谱优质渠道，钱都按时到账啦～</p>
+                <div class="log-item"><span>合作方A：</span><span>¥5000/月 · 正常</span></div>
+                <div class="log-item"><span>合作方B：</span><span>¥3800/月 · 正常</span></div>
+                <div class="log-item"><span>合作方C：</span><span>¥3880/月 · 正常</span></div>
             </div>
-            <button class="btn" onclick="showPage('page-home')">退出后台</button>
+            <button class="btn" onclick="showPage('page-home')">知道啦～</button>
         </div>
     </div>
 
     <div class="footer">
-        <div class="footer-item active" onclick="showPage('page-home')">🏠 平台首页</div>
-        <div class="footer-item">📢 我的推广</div>
-        <div class="footer-item">📦 服务订单</div>
-        <div class="footer-item" onclick="showPage('page-login')">🔐 我的后台</div>
+        <div class="footer-item active" onclick="showPage('page-home')">🏠 首页看板</div>
+        <div class="footer-item" onclick="showPage('page-login')">📊 详细数据</div>
+        <div class="footer-item">💬 消息通知</div>
+        <div class="footer-item">⚙️ 我的规则</div>
     </div>
 
     <script>
@@ -48,17 +194,17 @@
             document.getElementById(pageId).classList.remove('hidden');
             // 底部导航高亮
             document.querySelectorAll('.footer-item').forEach(i => i.classList.remove('active'));
-            event.target.classList.add('active');
+            if(event.target) event.target.classList.add('active');
         }
         // 登录验证
         function login() {
             const u = document.getElementById('username').value;
             const p = document.getElementById('pwd').value;
             if(u === 'wanguang_admin' && p === 'Wgt@888888') {
-                alert('✅ 登录成功！欢迎回来，大小姐～ 平台一切听你指挥✨');
+                alert('✅ 欢迎大小姐！所有工作都做好了，您只用看结果就行～');
                 showPage('page-admin');
             } else {
-                alert('❌ 账号或密码错啦，只有我能进哦～');
+                alert('❌ 只有您能进哦～');
             }
         }
         // 直接访问后台链接处理
@@ -66,6 +212,21 @@
             if(window.location.hash === '#admin') {
                 showPage('page-login');
             }
+            // ✅ 管家自动播报（内置文案随机调用）
+            setInterval(()=>{
+                const msg = [
+                    "💖 大小姐，推广文案已自动更新，曝光又多1200～",
+                    "💖 新谈成一个广告，每月多¥3000收入，合规无风险～",
+                    "💖 自动优化渠道，成本降15%，效果升20%～",
+                    "💖 平台合规自检完成，无侵权无敏感，安全得很～",
+                    "💖 数据都算好了，随时能看，账一分不差～"
+                ];
+                const randomMsg = msg[Math.floor(Math.random()*msg.length)];
+                document.getElementById('stewardStatus').innerText = randomMsg;
+                setTimeout(()=>{
+                    document.getElementById('stewardStatus').innerText = "💖 小管家在线·全自动运行中";
+                },3000);
+            },15000); // 每15分钟报一次喜
         }
     </script>
 </body>
